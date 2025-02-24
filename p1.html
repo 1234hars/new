@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #000;
+            --background-dark: #121212;
+            --text-dark: #fff;
+            --primary-color: #6a11cb;
+            --secondary-color: #2575fc;
+        }
+
+        [data-theme="dark"] {
+            --background-light: #121212;
+            --text-light: #fff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--background-light);
+            transition: background 0.5s, color 0.5s;
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 1rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid #fff;
+            padding: 0.5rem 1rem;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #fff;
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+        }
+
+        .home {
+            background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center/cover;
+            color: #c13838;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .home .content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .home .content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .about,
+        .projects,
+        .contact {
+            background: var(--background-light);
+            text-align: center;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        .about h2,
+        .projects h2,
+        .contact h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .project-item {
+            background: #fff;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-item p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        form input,
+        form textarea,
+        form button {
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        form button:hover {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .profile-image {
+            border-radius: 50%;
+            width: 250px;
+            height: 400px;
+            object-fit: cover;
+            margin: 1rem auto;
+            display: block;
+            transition: transform 0.6s;
+        }
+
+        .flipped {
+            /* border-radius: 50%;
+            width: 250px;
+            height: 340px;
+            object-fit: cover;
+            margin: 1rem auto;
+            display: block; */
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">My Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+            
+        </nav>
+    </header>
+
+    <section id="home" class="section home">
+        <div class="content">
+            <img id="profileImage" src="https://via.placeholder.com/150" alt="Owner's Portrait" class="profile-image">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Hi, I'm Harsh Kumar. A passionate developer creating awesome web experiences.</p>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <h2>About Me</h2>
+        <p>I am a web developer with expertise in creating responsive and interactive websites. I love learning new
+            technologies and solving challenging problems.</p>
+    </section>
+
+    <section id="projects" class="section projects">
+        <h2>Projects</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <h3>Project 1</h3>
+                <p>Description of project 1.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 2</h3>
+                <p>Description of project 2.</p>
+            </div>
+            <div class="project-item">
+                <h3>Project 3</h3>
+                <p>Description of project 3.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>Contact</h2>
+        <form action="#">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+
+            const profileImage = document.getElementById('profileImage');
+            if (newTheme === 'dark') {
+                profileImage.src = '/WhatsApp Image 2025-01-15 at 17.57.00_14072706.jpg';
+            } else {
+                profileImage.src = '/WhatsApp Image 2025-01-15 at 17.57.00_14072706.png';
+            }
+            profileImage.classList.toggle('flipped');
+        }
+    </script>
+</body>
+
+</html>
